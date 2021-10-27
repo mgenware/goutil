@@ -10,8 +10,6 @@ Installation:
 go get "github.com/mgenware/goutil"
 ```
 
-Import path:
+Documentation:
 
-```go
-import "github.com/mgenware/goutil"
-```
+[![Go Reference](https://pkg.go.dev/badge/github.com/mgenware/goutil.svg)](https://pkg.go.dev/github.com/mgenware/goutil)

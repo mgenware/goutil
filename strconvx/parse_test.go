@@ -18,7 +18,9 @@ func TestParseFloat64(t *testing.T) {
 	test.Assert(t, r, float64(-32.003))
 
 	r, err = ParseFloat64("aaa")
-	test.FatalOn(err, t)
+	if err == nil {
+		t.Fatal("Expected error")
+	}
 	test.Assert(t, r, float64(0))
 
 	r, err = ParseFloat64(fmt.Sprintf("%v", math.MaxFloat64))

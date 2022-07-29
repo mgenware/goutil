@@ -13,7 +13,7 @@ func Transact(db *sql.DB, txFunc func(*sql.Tx) error) (err error) {
 	}
 	defer func() {
 		if err != nil {
-			tx.Rollback()
+			tx.Rollback() //nolint
 		} else {
 			err = tx.Commit()
 		}

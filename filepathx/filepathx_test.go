@@ -41,9 +41,7 @@ func TestTrimExt(t *testing.T) {
 }
 
 func TestTempFilePath(t *testing.T) {
-	var got string
-
-	got = mustTempFilePath("", "", ".jpeg")
+	got := mustTempFilePath("", "", ".jpeg")
 	if filepath.Ext(got) != ".jpeg" {
 		errorf(t, "has a jpeg ext", got)
 	}

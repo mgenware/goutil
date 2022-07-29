@@ -22,7 +22,10 @@ func TestView(t *testing.T) {
 	v := MustParseView(file, false)
 	got := v.MustExecuteToString("haha")
 	test.Assert(t, got, "1haha")
-	os.WriteFile(file, []byte("2{{.}}"), 0644)
+	err := os.WriteFile(file, []byte("2{{.}}"), 0644)
+	if err != nil {
+		t.Fatal(err)
+	}
 	got = v.MustExecuteToString("haha")
 	test.Assert(t, got, "1haha")
 }
@@ -33,7 +36,10 @@ func TestDevView(t *testing.T) {
 	got := v.MustExecuteToString("haha")
 	test.Assert(t, got, "1haha")
 	time.Sleep(time.Second)
-	os.WriteFile(file, []byte("2{{.}}"), 0644)
+	err := os.WriteFile(file, []byte("2{{.}}"), 0644)
+	if err != nil {
+		t.Fatal(err)
+	}
 	got = v.MustExecuteToString("haha")
 	test.Assert(t, got, "2haha")
 }

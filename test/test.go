@@ -21,3 +21,10 @@ func PanicOn(err error) {
 		panic(err)
 	}
 }
+
+// FatalOn calls t.Fatal if the given error is not nil.
+func FatalOn(err error, t *testing.T) {
+	if err != nil {
+		t.Fatal(err)
+	}
+}

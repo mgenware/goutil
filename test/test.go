@@ -15,8 +15,8 @@ func Assert(t *testing.T, got, want interface{}) {
 	}
 }
 
-// PanicIfErr panics if the given error is not nil.
-func PanicIfErr(err error) {
+// PanicOn panics if the given error is not nil.
+func PanicOn(err error) {
 	if err != nil {
 		panic(err)
 	}

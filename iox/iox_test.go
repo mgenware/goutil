@@ -43,52 +43,52 @@ func nonExistingPath() string {
 
 func TestPathExists(t *testing.T) {
 	r, err := PathExists(newTempDir())
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 	test.Assert(t, r, true)
 	r, err = PathExists(nonExistingPath())
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 	test.Assert(t, r, false)
 }
 
 func TestFileExists(t *testing.T) {
 	f, err := os.CreateTemp("", "goutil.iox")
 	defer os.Remove(f.Name())
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 	r, err := FileExists(f.Name())
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 	test.Assert(t, r, true)
 
 	r, err = FileExists(nonExistingPath())
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 	test.Assert(t, r, false)
 }
 
 func TestDirectoryExists(t *testing.T) {
 	r, err := DirectoryExists(newTempDir())
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 	test.Assert(t, r, true)
 
 	r, err = DirectoryExists(nonExistingPath())
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 	test.Assert(t, r, false)
 }
 
 func TestMkdirp(t *testing.T) {
 	dir := randUniqueDirPath()
 	err := Mkdirp(dir)
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 
 	exist, err := DirectoryExists(dir)
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 	test.Assert(t, exist, true)
 }
 
 func TestCreateFile(t *testing.T) {
 	file := filepath.Join(randUniqueDirPath(), randString(5))
 	_, err := CreateFile(file)
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 
 	exist, err := FileExists(file)
-	test.PanicIfErr(err)
+	test.PanicOn(err)
 	test.Assert(t, exist, true)
 }

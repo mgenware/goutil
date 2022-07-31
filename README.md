@@ -1,6 +1,7 @@
 # goutil
 
 [![Build](https://github.com/mgenware/goutil/actions/workflows/build.yml/badge.svg)](https://github.com/mgenware/goutil/actions/workflows/build.yml)
+[![Lint](https://github.com/mgenware/goutil/actions/workflows/lint.yml/badge.svg)](https://github.com/mgenware/goutil/actions/workflows/lint.yml)
 
 Utility functions for Go (Go 1.16+).
 

@@ -5,6 +5,9 @@ import (
 	"path/filepath"
 )
 
+const DefaultFilePerm = 0644
+const DefaultDirectoryPerm = 0755
+
 // ReadFileText behaves like Go's os.ReadFile, but returns a string instead.
 func ReadFileText(file string) (string, error) {
 	bytes, err := os.ReadFile(file)
@@ -65,7 +68,7 @@ func IsDirectory(path string) bool {
 
 // Calls os.MkdirAll with 0755 permissions.
 func Mkdirp(path string) error {
-	return os.MkdirAll(path, 0755)
+	return os.MkdirAll(path, DefaultDirectoryPerm)
 }
 
 // CreateFile creates a file with the given path. It also creates

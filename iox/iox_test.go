@@ -92,3 +92,11 @@ func TestCreateFile(t *testing.T) {
 	test.PanicOn(err)
 	test.Assert(t, exist, true)
 }
+
+func TestDefaultFilePerm(t *testing.T) {
+	test.Assert(t, DefaultFilePerm, 0644)
+}
+
+func TestDefaultDirectoryPerm(t *testing.T) {
+	test.Assert(t, DefaultDirectoryPerm, 0755)
+}

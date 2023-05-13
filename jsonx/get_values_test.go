@@ -16,44 +16,74 @@ func init() {
 	sampleDict = dict
 }
 
-func TestGetString(t *testing.T) {
-	test.Assert(t, GetString(sampleDict, "s"), "haha")
-	test.Assert(t, GetString(sampleDict, "_"), "")
+func TestGetStringOrDefault(t *testing.T) {
+	test.Assert(t, GetStringOrDefault(sampleDict, "s"), "haha")
+	test.Assert(t, GetStringOrDefault(sampleDict, "_"), "")
 }
 
-func TestGetBool(t *testing.T) {
-	test.Assert(t, GetBool(sampleDict, "b"), true)
-	test.Assert(t, GetBool(sampleDict, "_"), false)
+func TestGetStringOrNil(t *testing.T) {
+	test.Assert(t, *GetStringOrNil(sampleDict, "s"), "haha")
+	test.Assert(t, GetStringOrNil(sampleDict, "_"), (*string)(nil))
 }
 
-func TestGetInt(t *testing.T) {
-	test.Assert(t, GetInt(sampleDict, "nn"), -1)
-	test.Assert(t, GetInt(sampleDict, "_"), 0)
+func TestGetBoolOrDefault(t *testing.T) {
+	test.Assert(t, GetBoolOrDefault(sampleDict, "b"), true)
+	test.Assert(t, GetBoolOrDefault(sampleDict, "_"), false)
 }
 
-func TestGetUint(t *testing.T) {
-	test.Assert(t, GetUint(sampleDict, "pn"), uint(123))
-	test.Assert(t, GetUint(sampleDict, "_"), uint(0))
+func TestGetBoolOrNil(t *testing.T) {
+	test.Assert(t, *GetBoolOrNil(sampleDict, "b"), true)
+	test.Assert(t, GetBoolOrNil(sampleDict, "_"), (*bool)(nil))
 }
 
-func TestGetInt64(t *testing.T) {
-	test.Assert(t, GetInt64(sampleDict, "nn"), int64(-1))
-	test.Assert(t, GetInt64(sampleDict, "_"), int64(0))
+func TestGetIntOrDefault(t *testing.T) {
+	test.Assert(t, GetIntOrDefault(sampleDict, "nn"), -1)
+	test.Assert(t, GetIntOrDefault(sampleDict, "_"), 0)
 }
 
-func TestGetUint64(t *testing.T) {
-	test.Assert(t, GetUint64(sampleDict, "pn"), uint64(123))
-	test.Assert(t, GetUint64(sampleDict, "_"), uint64(0))
+func TestGetIntOrNil(t *testing.T) {
+	test.Assert(t, *GetIntOrNil(sampleDict, "nn"), -1)
+	test.Assert(t, GetIntOrNil(sampleDict, "_"), (*int)(nil))
 }
 
-func TestGetDict(t *testing.T) {
-	d1 := GetDict(sampleDict, "dict")
+func TestGetUintOrDefault(t *testing.T) {
+	test.Assert(t, GetUintOrDefault(sampleDict, "pn"), uint(123))
+	test.Assert(t, GetUintOrDefault(sampleDict, "_"), uint(0))
+}
+
+func TestGetUintOrNil(t *testing.T) {
+	test.Assert(t, *GetUintOrNil(sampleDict, "pn"), uint(123))
+	test.Assert(t, GetUintOrNil(sampleDict, "_"), (*uint)(nil))
+}
+
+func TestGetInt64OrDefault(t *testing.T) {
+	test.Assert(t, GetInt64OrDefault(sampleDict, "nn"), int64(-1))
+	test.Assert(t, GetInt64OrDefault(sampleDict, "_"), int64(0))
+}
+
+func TestGetInt64OrNil(t *testing.T) {
+	test.Assert(t, *GetInt64OrNil(sampleDict, "nn"), int64(-1))
+	test.Assert(t, GetInt64OrNil(sampleDict, "_"), (*int64)(nil))
+}
+
+func TestGetUint64OrDefault(t *testing.T) {
+	test.Assert(t, GetUint64OrDefault(sampleDict, "pn"), uint64(123))
+	test.Assert(t, GetUint64OrDefault(sampleDict, "_"), uint64(0))
+}
+
+func TestGetUint64OrNil(t *testing.T) {
+	test.Assert(t, *GetUint64OrNil(sampleDict, "pn"), uint64(123))
+	test.Assert(t, GetUint64OrNil(sampleDict, "_"), (*uint64)(nil))
+}
+
+func TestGetDictOrNil(t *testing.T) {
+	d1 := GetDictOrNil(sampleDict, "dict")
 	d2 := make(map[string]interface{})
 	d2["a"] = true
 	d2["b"] = []interface{}{"element1", "element2"}
 	test.Assert(t, d1, d2)
 
-	test.Assert(t, GetDict(sampleDict, "arr"), map[string]interface{}(nil))
+	test.Assert(t, GetDictOrNil(sampleDict, "arr"), map[string]interface{}(nil))
 }
 
 func TestGetDictOrEmpty(t *testing.T) {
@@ -66,12 +96,12 @@ func TestGetDictOrEmpty(t *testing.T) {
 	test.Assert(t, GetDictOrEmpty(sampleDict, "arr"), make(map[string]interface{}))
 }
 
-func TestGetArray(t *testing.T) {
-	d1 := GetArray(sampleDict, "arr")
+func TestGetArrayOrNil(t *testing.T) {
+	d1 := GetArrayOrNil(sampleDict, "arr")
 	d2 := []interface{}{float64(1), float64(2), "haha"}
 	test.Assert(t, d1, d2)
 
-	test.Assert(t, GetArray(sampleDict, "dict"), []interface{}(nil))
+	test.Assert(t, GetArrayOrNil(sampleDict, "dict"), []interface{}(nil))
 }
 
 func TestGetArrayOrEmpty(t *testing.T) {
